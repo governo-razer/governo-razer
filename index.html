@@ -132,7 +132,7 @@
             background: var(--gold-primary);
         }
 
-        /* WELCOME SPLASH SCREEN OVERLAY */
+        /* WELCOME SPLASH OVERLAY */
         #welcomeOverlay {
             position: fixed;
             top: 0;
@@ -246,7 +246,7 @@
             background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
         }
 
-        /* APP LAYOUT STRUCTURE */
+        /* APP LAYOUT CONTAINER */
         .app-layout {
             display: flex;
             width: 100vw;
@@ -393,7 +393,7 @@
             color: var(--gold-bright);
         }
 
-        /* Submenus inside Sidebar for Codice Penale */
+        /* Submenu inside Sidebar for Codice Penale V2 */
         .sidebar-sub-group {
             display: none;
             flex-direction: column;
@@ -546,7 +546,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
         }
 
-        /* INDEPENDENT MAIN SCROLL AREA WITH FULL WIDTH UTILIZATION */
+        /* INDEPENDENT MAIN SCROLL AREA */
         .main-scroll-area {
             flex: 1;
             overflow-y: auto; /* Independent main page scroll! */
@@ -578,7 +578,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* INNER SUB-NAV PILLS FOR CODICE PENALE */
+        /* INNER SUB-NAV PILLS FOR CODICE PENALE V2 */
         .inner-sub-nav {
             display: flex;
             align-items: center;
@@ -847,6 +847,32 @@
 
         .card-header-title i {
             color: var(--gold-dark);
+        }
+
+        /* CATEGORY TRANSITION SEPARATOR BANNER (PERFECTION FOR ALL CRIMES UNIFIED LIST) */
+        .cat-separator-banner {
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%);
+            color: #ffffff;
+            border: 2px solid var(--gold-primary);
+            border-radius: var(--radius-lg);
+            padding: 1.1rem 1.5rem;
+            margin: 2.2rem 0 1.2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .cat-separator-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
         }
 
         /* TABLES & PRICING */
@@ -1127,7 +1153,7 @@
                     </div>
                 </a>
 
-                <!-- 2. CODICE PENALE -->
+                <!-- 2. CODICE PENALE V2 CON LE 4 SOTTO-CATEGORIE DEDICATE -->
                 <a class="nav-btn" onclick="toggleSubMenu('sub-codice-penale', 'codice-penale')">
                     <div class="nav-btn-content">
                         <i class="fa-solid fa-gavel" style="color:var(--gold-dark);"></i>
@@ -1136,26 +1162,17 @@
                     <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i>
                 </a>
                 <div class="sidebar-sub-group" id="sub-codice-penale">
-                    <div class="sub-btn-item active" onclick="selectSubTab('cp-stradali', 'codice-penale')">
-                        <i class="fa-solid fa-car-burst"></i> Illeciti Stradali
-                    </div>
-                    <div class="sub-btn-item" onclick="selectSubTab('cp-amministrativi', 'codice-penale')">
-                        <i class="fa-solid fa-landmark"></i> Illeciti Amministrativi
-                    </div>
-                    <div class="sub-btn-item" onclick="selectSubTab('cp-commerciali', 'codice-penale')">
-                        <i class="fa-solid fa-store"></i> Illeciti Commerciali
-                    </div>
-                    <div class="sub-btn-item" onclick="selectSubTab('cp-pubblici-ufficiali', 'codice-penale')">
-                        <i class="fa-solid fa-user-shield"></i> Reati Pubblici Ufficiali
-                    </div>
-                    <div class="sub-btn-item" onclick="selectSubTab('cp-civili', 'codice-penale')">
-                        <i class="fa-solid fa-scale-unbalanced"></i> Illeciti Civili
-                    </div>
-                    <div class="sub-btn-item" onclick="selectSubTab('cp-penali', 'codice-penale')">
-                        <i class="fa-solid fa-handcuffs"></i> Illeciti Penali
+                    <div class="sub-btn-item active" onclick="selectSubTab('cp-reati-tutti', 'codice-penale')">
+                        <i class="fa-solid fa-book"></i> Reati Codice Penale
                     </div>
                     <div class="sub-btn-item" onclick="selectSubTab('cp-note', 'codice-penale')">
                         <i class="fa-solid fa-clipboard-check"></i> Note & Disposizioni
+                    </div>
+                    <div class="sub-btn-item" onclick="selectSubTab('cp-procedura', 'codice-penale')">
+                        <i class="fa-solid fa-scale-balanced"></i> Procedura Penale & Civile
+                    </div>
+                    <div class="sub-btn-item" onclick="selectSubTab('cp-armi', 'codice-penale')">
+                        <i class="fa-solid fa-gun"></i> Classificazione Armi
                     </div>
                 </div>
 
@@ -1202,7 +1219,7 @@
                 <!-- Universal Search -->
                 <div class="search-wrap">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Cerca articoli, reati, penali o documenti..." onkeyup="globalSearch()">
+                    <input type="text" id="searchInput" placeholder="Cerca articoli, reati, armi, procedure o documenti..." onkeyup="globalSearch()">
                 </div>
 
                 <div class="status-pill">
@@ -1227,13 +1244,13 @@
                         <!-- 3 GRANDI PULSANTI CATEGORIE PRINCIPALI SU HOMEPAGE -->
                         <div class="big-categories-grid">
                             <!-- GRANDES BOTTONE 1: CODICE PENALE V2 -->
-                            <div class="big-cat-btn" onclick="navigatePage('codice-penale'); selectSubTab('cp-penali', 'codice-penale');">
+                            <div class="big-cat-btn" onclick="navigatePage('codice-penale'); selectSubTab('cp-reati-tutti', 'codice-penale');">
                                 <div class="big-cat-icon">
                                     <i class="fa-solid fa-book-journal-whills"></i>
                                 </div>
                                 <h3 class="big-cat-title">Codice Penale V2</h3>
                                 <p class="big-cat-desc">
-                                    Consultazione completa e dettagliata dei 140 articoli di legge, sanzioni pecuniarie, tempi di detenzione e procedure operative per le FDO.
+                                    Consultazione completa di tutti i 140 articoli di legge, Note, Procedura Penale & Civile e Tabella Classificazione Armi.
                                 </p>
                                 <div class="big-cat-badge">
                                     <span>CONSULTA CODICE</span>
@@ -1280,7 +1297,7 @@
                                 </div>
                                 <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.9rem;">
                                     <li style="border-left: 3px solid var(--gold-primary); padding-left: 0.8rem;">
-                                        <strong style="color: var(--navy-primary);">Codice Penale V2 Attivo:</strong> Consultare la categoria dedicata per tutti i 140 articoli di legge.
+                                        <strong style="color: var(--navy-primary);">Codice Penale V2 Aggiornato:</strong> Integrate la Procedura Penale/Civile e la Classificazione Ufficiale delle Armi.
                                     </li>
                                     <li style="border-left: 3px solid var(--navy-primary); padding-left: 0.8rem;">
                                         <strong style="color: var(--navy-primary);">Calcolatore Reati Integrato:</strong> Selezione multipla con blocco reati Classe P e limite max 60 mesi.
@@ -1311,29 +1328,34 @@
 
                     <!-- ================= SECTION: CODICE PENALE V2 ================= -->
                     <section id="view-codice-penale" class="view-section">
+                        <!-- 4 SUB-TABS DEDICATE COME RICHIESTO -->
                         <div class="inner-sub-nav">
-                            <button class="sub-pill-btn active" onclick="selectSubTab('cp-stradali', 'codice-penale')"><i class="fa-solid fa-car-burst"></i> Stradali (14)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-amministrativi', 'codice-penale')"><i class="fa-solid fa-landmark"></i> Amministrativi (7)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-commerciali', 'codice-penale')"><i class="fa-solid fa-store"></i> Commerciali (26)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-pubblici-ufficiali', 'codice-penale')"><i class="fa-solid fa-user-shield"></i> Pubblici Ufficiali (11)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-civili', 'codice-penale')"><i class="fa-solid fa-scale-unbalanced"></i> Civili (15)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-penali', 'codice-penale')"><i class="fa-solid fa-handcuffs"></i> Penali (67)</button>
-                            <button class="sub-pill-btn" onclick="selectSubTab('cp-note', 'codice-penale')"><i class="fa-solid fa-clipboard-check"></i> Note (7)</button>
+                            <button class="sub-pill-btn active" onclick="selectSubTab('cp-reati-tutti', 'codice-penale')">
+                                <i class="fa-solid fa-book"></i> 1 - Reati Codice Penale (140)
+                            </button>
+                            <button class="sub-pill-btn" onclick="selectSubTab('cp-note', 'codice-penale')">
+                                <i class="fa-solid fa-clipboard-check"></i> 2 - Note & Disposizioni (7)
+                            </button>
+                            <button class="sub-pill-btn" onclick="selectSubTab('cp-procedura', 'codice-penale')">
+                                <i class="fa-solid fa-scale-balanced"></i> 3 - Procedura Penale e Civile (18)
+                            </button>
+                            <button class="sub-pill-btn" onclick="selectSubTab('cp-armi', 'codice-penale')">
+                                <i class="fa-solid fa-gun"></i> 4 - Classificazione Armi (28)
+                            </button>
                         </div>
 
-                        <div style="margin-bottom: 1.2rem; display:flex; align-items:center; gap:1rem;">
-                            <div style="position:relative; flex:1;">
-                                <i class="fa-solid fa-filter" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--navy-primary);"></i>
-                                <input type="text" id="cpFilterInput" onkeyup="filterCodicePenale()" placeholder="Filtra articoli o reati del Codice Penale in tempo reale..." style="width:100%; padding:0.6rem 1rem 0.6rem 2.6rem; border:1px solid var(--border-gold); border-radius:30px; font-family:var(--font-body); font-size:0.88rem; background:#ffffff; box-shadow:var(--shadow-sm);">
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-stradali" class="sub-tab-content" style="display:block;">
+                        <!-- 1. SUB-TAB: REATI CODICE PENALE (TUTTI IN UNA SOLA LISTA UNIFICATA CON SEPARATORI EVVIDENZIATI) -->
+                        <div id="sub-cp-reati-tutti" class="sub-tab-content" style="display:block;">
                             <div class="white-card">
                                 <div class="card-header-bar">
                                     <h2 class="card-header-title">
-                                        <i class="fa-solid fa-car-burst"></i> Illeciti Stradali (14 Articoli)
+                                        <i class="fa-solid fa-book-journal-whills"></i> Elenco Completo Reati Codice Penale V2
                                     </h2>
+                                </div>
+
+                                <div style="margin-bottom: 1.2rem; position:relative;">
+                                    <i class="fa-solid fa-filter" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--navy-primary);"></i>
+                                    <input type="text" id="cpFilterInput" onkeyup="filterCodicePenale()" placeholder="Filtra articoli o reati del Codice Penale in tempo reale..." style="width:100%; padding:0.6rem 1rem 0.6rem 2.6rem; border:1px solid var(--border-gold); border-radius:30px; font-family:var(--font-body); font-size:0.88rem; background:#ffffff; box-shadow:var(--shadow-sm);">
                                 </div>
 
                                 <div class="table-responsive">
@@ -1350,7 +1372,20 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-car-burst" style="color:var(--gold-bright); font-size:1.2rem;"></i> ILLECITI STRADALI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            14 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Eccesso di Velocità</strong></td>
@@ -1359,7 +1394,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Guida in stato di ebbrezza / sotto effetto di Stupefacenti</strong></td>
@@ -1368,7 +1403,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Guida pericolosa</strong></td>
@@ -1377,7 +1412,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Guida senza patente (Non conseguita/Scaduta)</strong></td>
@@ -1386,7 +1421,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Utilizzo di vetri oscurati senza permesso</strong></td>
@@ -1395,7 +1430,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Raduno , Evento o manifestazione non Autorizzata</strong></td>
@@ -1404,7 +1439,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Blocco Stradale</strong></td>
@@ -1413,7 +1448,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Mancato Alt</strong></td>
@@ -1422,7 +1457,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Furto di Veicolo</strong></td>
@@ -1431,7 +1466,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.1.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Partecipazione a Gara Clandestina</strong></td>
@@ -1440,7 +1475,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo, ritiro della patente e arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.2.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Ostruzione dei binari o delle piste aeroportuali</strong></td>
@@ -1449,7 +1484,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.2.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Guida Senza Casco</strong></td>
@@ -1458,7 +1493,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.2.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Incauto Affidamento di veicolo</strong></td>
@@ -1467,7 +1502,7 @@
                                                 <td style="font-size:0.82rem;">Sequestro veicolo e Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.S.2.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Alterazione/ Rimozione di Targa del Veicolo</strong></td>
@@ -1477,35 +1512,20 @@
 Controllare Veicoli senza targa</td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-amministrativi" class="sub-tab-content" style="display:none;">
-                            <div class="white-card">
-                                <div class="card-header-bar">
-                                    <h2 class="card-header-title">
-                                        <i class="fa-solid fa-landmark"></i> Illeciti Amministrativi (7 Articoli)
-                                    </h2>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="custom-table cp-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:110px;">Articolo</th>
-                                                <th style="width:65px; text-align:center;">Classe</th>
-                                                <th>Reato / Descrizione</th>
-                                                <th style="width:170px;">Sanzione Pecuniaria</th>
-                                                <th style="width:130px;">Detenzione</th>
-                                                <th>Procedure Operative FDO</th>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-landmark" style="color:var(--gold-bright); font-size:1.2rem;"></i> ILLECITI AMMINISTRATIVI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            7 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione fiscale</strong></td>
@@ -1514,7 +1534,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione fiscale Fraudolenta</strong></td>
@@ -1523,7 +1543,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso e riciclaggio di denaro non tracciabile (da 1$ fino a 49.999$)</strong></td>
@@ -1532,7 +1552,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso e Riciclaggio internazionale di denaro non tracciabile ( da 50.000 $ a 199.999 $)</strong></td>
@@ -1541,7 +1561,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso e Riciclaggio internazionale Fraudolento di denaro non tracciabile (uguale o maggiore di 200.000)</strong></td>
@@ -1550,7 +1570,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso di denaro tracciabile sopra il limite di legge  (pari o superiori a $250.000)</strong></td>
@@ -1559,7 +1579,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.A.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Truffa</strong></td>
@@ -1568,35 +1588,20 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-commerciali" class="sub-tab-content" style="display:none;">
-                            <div class="white-card">
-                                <div class="card-header-bar">
-                                    <h2 class="card-header-title">
-                                        <i class="fa-solid fa-store"></i> Illeciti Commerciali (26 Articoli)
-                                    </h2>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="custom-table cp-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:110px;">Articolo</th>
-                                                <th style="width:65px; text-align:center;">Classe</th>
-                                                <th>Reato / Descrizione</th>
-                                                <th style="width:170px;">Sanzione Pecuniaria</th>
-                                                <th style="width:130px;">Detenzione</th>
-                                                <th>Procedure Operative FDO</th>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-store" style="color:var(--gold-bright); font-size:1.2rem;"></i> ILLECITI COMMERCIALI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            26 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione sulle Imposte (Fino a 99$)</strong></td>
@@ -1605,7 +1610,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione sulle Imposte (Da 100$ a 9.999$)</strong></td>
@@ -1614,7 +1619,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione sulle Imposte (Da 10.000$ a 99.999$)</strong></td>
@@ -1623,7 +1628,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Evasione sulle Imposte (Oltre 100.000$)</strong></td>
@@ -1632,7 +1637,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Frode Fiscale</strong></td>
@@ -1641,7 +1646,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Vendita Illegale di prodotti</strong></td>
@@ -1650,7 +1655,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Favoreggiamento lavoro in nero</strong></td>
@@ -1659,7 +1664,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Discriminazione sul luogo di Lavoro / Mobbing</strong></td>
@@ -1668,7 +1673,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Mancato pagamento della retribuzione</strong></td>
@@ -1677,7 +1682,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.1.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Svolgimento di attività lavorativa senza documento</strong></td>
@@ -1686,7 +1691,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Bancarotta Fraudolenta</strong></td>
@@ -1695,7 +1700,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Concorrenza Sleale</strong></td>
@@ -1704,7 +1709,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Inadempienza ai doveri amministrativi/istituzionali</strong></td>
@@ -1713,7 +1718,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Inadempienza ai doveri amministrativi/istituzionali aggravata</strong></td>
@@ -1722,7 +1727,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Violazione di obbligazioni contrattuali</strong></td>
@@ -1731,7 +1736,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Sfruttamento illecito della professione giornalistica</strong></td>
@@ -1740,7 +1745,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Diffamazione a mezzo stampa</strong></td>
@@ -1749,7 +1754,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Alterazione fraudolenta di contenuti editoriali</strong></td>
@@ -1758,7 +1763,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Pubblicazione negligente di informazioni</strong></td>
@@ -1767,7 +1772,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.2.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Interferenza illecita con attività amministrativa</strong></td>
@@ -1776,7 +1781,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Diffusione di notizie allarmistiche false</strong></td>
@@ -1785,7 +1790,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Manipolazione illecita di dati e notizie</strong></td>
@@ -1794,7 +1799,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Diffusione di messaggi sovversivi o ostili</strong></td>
@@ -1803,7 +1808,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Inadempimento ad accordo governativo</strong></td>
@@ -1812,7 +1817,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Immissione illecita di veicoli fuori produzione</strong></td>
@@ -1821,7 +1826,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.CM.3.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Omissione dichiarazione fuori produzione</strong></td>
@@ -1830,35 +1835,20 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-pubblici-ufficiali" class="sub-tab-content" style="display:none;">
-                            <div class="white-card">
-                                <div class="card-header-bar">
-                                    <h2 class="card-header-title">
-                                        <i class="fa-solid fa-user-shield"></i> Reati dei Pubblici Ufficiali (11 Articoli)
-                                    </h2>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="custom-table cp-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:110px;">Articolo</th>
-                                                <th style="width:65px; text-align:center;">Classe</th>
-                                                <th>Reato / Descrizione</th>
-                                                <th style="width:170px;">Sanzione Pecuniaria</th>
-                                                <th style="width:130px;">Detenzione</th>
-                                                <th>Procedure Operative FDO</th>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-user-shield" style="color:var(--gold-bright); font-size:1.2rem;"></i> REATI DEI PUBBLICI UFFICIALI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            11 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Abuso di potere</strong></td>
@@ -1867,7 +1857,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Abuso D'ufficio</strong></td>
@@ -1876,7 +1866,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Corruzione/Concussione</strong></td>
@@ -1885,7 +1875,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Falsificazione atti d'ufficio</strong></td>
@@ -1894,7 +1884,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Divulgazione di Atti d'ufficio</strong></td>
@@ -1903,7 +1893,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Minacce da pubblico ufficiale</strong></td>
@@ -1912,7 +1902,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Peculato</strong></td>
@@ -1921,7 +1911,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Uso eccessivo della forza</strong></td>
@@ -1930,7 +1920,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Negligenza</strong></td>
@@ -1939,7 +1929,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.1.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Inadempienza ai doveri federali e/o insubordinazione</strong></td>
@@ -1948,7 +1938,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.PU.2.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Mancata identificazione di Pubblico Ufficiale</strong></td>
@@ -1957,35 +1947,20 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-civili" class="sub-tab-content" style="display:none;">
-                            <div class="white-card">
-                                <div class="card-header-bar">
-                                    <h2 class="card-header-title">
-                                        <i class="fa-solid fa-scale-unbalanced"></i> Illeciti Civili (15 Articoli)
-                                    </h2>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="custom-table cp-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:110px;">Articolo</th>
-                                                <th style="width:65px; text-align:center;">Classe</th>
-                                                <th>Reato / Descrizione</th>
-                                                <th style="width:170px;">Sanzione Pecuniaria</th>
-                                                <th style="width:130px;">Detenzione</th>
-                                                <th>Procedure Operative FDO</th>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-scale-unbalanced" style="color:var(--gold-bright); font-size:1.2rem;"></i> ILLECITI CIVILI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            15 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Diffamazione</strong></td>
@@ -1994,7 +1969,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Ingiuria</strong></td>
@@ -2003,7 +1978,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Calunnia</strong></td>
@@ -2012,7 +1987,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Falsa Dichiarazione</strong></td>
@@ -2021,7 +1996,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Falsa Testimonianza</strong></td>
@@ -2030,7 +2005,7 @@ Controllare Veicoli senza targa</td>
                                                 <td style="font-size:0.82rem;">Incriminazione immediata tramite sentenza</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Oltraggio alla corte</strong></td>
@@ -2040,7 +2015,7 @@ Controllare Veicoli senza targa</td>
 dell'autorità giudiziaria</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Disturbo della quiete pubblica</strong></td>
@@ -2049,7 +2024,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Incauto Affidamento</strong></td>
@@ -2058,7 +2033,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Atti Osceni in Luogo Pubblico</strong></td>
@@ -2067,7 +2042,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.1.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Minacce</strong></td>
@@ -2076,7 +2051,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.2.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Occupazione di suolo pubblico  o  privato</strong></td>
@@ -2085,7 +2060,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.2.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Danneggiamento a Beni Privati / Statali</strong></td>
@@ -2094,7 +2069,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.2.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Incauta diffusione di foto/video/testi</strong></td>
@@ -2103,7 +2078,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.2.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-E">E</span></td>
                                                 <td><strong style="color:var(--text-heading);">Mancata esecuzione dei L.S.U.</strong></td>
@@ -2112,7 +2087,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Sanzione Amministrativa</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.C.2.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Omissione di Soccorso</strong></td>
@@ -2121,35 +2096,20 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="sub-cp-penali" class="sub-tab-content" style="display:none;">
-                            <div class="white-card">
-                                <div class="card-header-bar">
-                                    <h2 class="card-header-title">
-                                        <i class="fa-solid fa-handcuffs"></i> Illeciti Penali (67 Articoli)
-                                    </h2>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="custom-table cp-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:110px;">Articolo</th>
-                                                <th style="width:65px; text-align:center;">Classe</th>
-                                                <th>Reato / Descrizione</th>
-                                                <th style="width:170px;">Sanzione Pecuniaria</th>
-                                                <th style="width:130px;">Detenzione</th>
-                                                <th>Procedure Operative FDO</th>
+                                            <tr class="cat-sep-row" style="background:var(--navy-primary); color:#ffffff;">
+                                                <td colspan="6" style="padding:1rem; background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); border-top:3px solid var(--gold-primary); border-bottom:3px solid var(--gold-primary);">
+                                                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                                                        <span style="font-family:var(--font-title); font-weight:900; font-size:1.1rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:0.75rem;">
+                                                            <i class="fa-solid fa-handcuffs" style="color:var(--gold-bright); font-size:1.2rem;"></i> ILLECITI PENALI
+                                                        </span>
+                                                        <span style="font-size:0.8rem; background:var(--gold-primary); color:#000000; font-weight:800; padding:3px 10px; border-radius:15px; font-family:var(--font-code);">
+                                                            67 ARTICOLI
+                                                        </span>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Minacce a Pubblico Ufficiale</strong></td>
@@ -2158,7 +2118,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Abuso per sostituzione di persona</strong></td>
@@ -2167,7 +2127,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Intralcio alla giustizia</strong></td>
@@ -2176,7 +2136,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Oltraggio a Pubblico Ufficiale</strong></td>
@@ -2185,7 +2145,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Resistenza a Pubblico Ufficiale</strong></td>
@@ -2194,7 +2154,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tentata Fuga</strong></td>
@@ -2203,7 +2163,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Procurato Allarme</strong></td>
@@ -2212,7 +2172,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Favoreggiamento</strong></td>
@@ -2221,7 +2181,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Aggressione</strong></td>
@@ -2230,7 +2190,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.1.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Aggressione a Pubblico Ufficiale</strong></td>
@@ -2239,7 +2199,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Violazione di proprietà privata</strong></td>
@@ -2248,7 +2208,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso di Documenti Falsi</strong></td>
@@ -2257,7 +2217,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Vendita ambulante abusiva</strong></td>
@@ -2266,7 +2226,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Utilizzo improprio di arma contundente o arma da taglio</strong></td>
@@ -2275,7 +2235,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Utilizzo improprio di arma da fuoco</strong></td>
@@ -2284,7 +2244,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Detenzione illegale di arma legale</strong></td>
@@ -2293,7 +2253,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Detenzione di arma illegale</strong></td>
@@ -2302,7 +2262,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Detenzione di arma bianca illegale</strong></td>
@@ -2311,7 +2271,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Negozietto</strong></td>
@@ -2320,7 +2280,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.2.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Ponson Boys</strong></td>
@@ -2329,7 +2289,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Gabriella's</strong></td>
@@ -2338,7 +2298,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Gioielleria</strong></td>
@@ -2347,7 +2307,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Fleeca</strong></td>
@@ -2356,7 +2316,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Blaine</strong></td>
@@ -2365,7 +2325,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina a Mano Armata Pacific</strong></td>
@@ -2374,7 +2334,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Rapina all'ATM</strong></td>
@@ -2383,7 +2343,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso ingiustificato di arnesi atti allo scasso (Grimaldelli)</strong></td>
@@ -2392,7 +2352,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Ricettazione (Da 6 a 85 pezzi)</strong></td>
@@ -2401,7 +2361,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Ricettazione aggravata (da 86 in su)</strong></td>
@@ -2410,7 +2370,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.3.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Spaccio di Sostanze Stupefacenti: da 1 a 100 unità</strong></td>
@@ -2419,7 +2379,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Contrabbando di Sostanze Stupefacenti: da 101 a 250 unità</strong></td>
@@ -2428,7 +2388,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Traffico Internazionale di Sostanze Stupefacenti (maggiore di 250 unità)</strong></td>
@@ -2437,7 +2397,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Sequestro di Pubblico Ufficiale/Persona non Premeditato</strong></td>
@@ -2446,7 +2406,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Sequestro di Pubblico Ufficiale/Persona Premeditato</strong></td>
@@ -2455,7 +2415,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Istigazione</strong></td>
@@ -2464,7 +2424,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Utilizzo improprio di maschera parziale</strong></td>
@@ -2473,7 +2433,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-D">D</span></td>
                                                 <td><strong style="color:var(--text-heading);">Utilizzo improprio di maschera totale/ integrale</strong></td>
@@ -2482,7 +2442,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-C">C</span></td>
                                                 <td><strong style="color:var(--text-heading);">Interruzione di servizio pubblico</strong></td>
@@ -2491,7 +2451,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Occupazione suolo governativo</strong></td>
@@ -2500,7 +2460,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.4.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Raffinazione di sostanze Stupefacenti</strong></td>
@@ -2509,7 +2469,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Abuso di Professione</strong></td>
@@ -2518,7 +2478,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Raggiungimento di 5 pulizie fedine penali.</strong></td>
@@ -2527,7 +2487,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Raggiungimento di 5 arresti con  reato di classe A</strong></td>
@@ -2536,7 +2496,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Associazione a Delinquere</strong></td>
@@ -2545,7 +2505,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Associazione a Delinquere di stampo mafioso o terroristico</strong></td>
@@ -2554,7 +2514,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Attentato alle Istituzioni Governative</strong></td>
@@ -2563,7 +2523,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Omicidio/Omicidio P.U.</strong></td>
@@ -2572,7 +2532,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Traffico di Armi Illegali (da 5 a 10 unità )</strong></td>
@@ -2581,7 +2541,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Traffico  Internazionale di Armi Illegali (maggiore di 10 unità )</strong></td>
@@ -2590,7 +2550,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.5.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Possesso di Armi Legali (da 5 a 10 unità )</strong></td>
@@ -2599,7 +2559,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Traffico Internazionale di Armi Legali (maggiore di 10 unità )</strong></td>
@@ -2608,7 +2568,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Vendita/Acquisto illegale di Armi</strong></td>
@@ -2617,7 +2577,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Estorsione</strong></td>
@@ -2626,7 +2586,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Falsificazione/Occultamento Prove</strong></td>
@@ -2635,7 +2595,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tentato Omicidio</strong></td>
@@ -2644,7 +2604,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tentato Omicidio a Pubblico Ufficiale</strong></td>
@@ -2653,7 +2613,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tentato Omicidio a P.U. Aggravato</strong></td>
@@ -2662,7 +2622,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.8</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tortura</strong></td>
@@ -2671,7 +2631,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.9</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-A">A</span></td>
                                                 <td><strong style="color:var(--text-heading);">Violazione di proprietà dello stato/federale/militare</strong></td>
@@ -2680,7 +2640,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.6.10</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Cospirazione</strong></td>
@@ -2689,7 +2649,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.1</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Tentata corruzione</strong></td>
@@ -2698,7 +2658,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.2</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Frode Elettorale</strong></td>
@@ -2707,7 +2667,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.3</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Scambio elettorale politico-mafioso</strong></td>
@@ -2716,7 +2676,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.4</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-B">B</span></td>
                                                 <td><strong style="color:var(--text-heading);">Interruzione di propaganda elettorale</strong></td>
@@ -2725,7 +2685,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Arresto</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.5</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Scambio di Voto</strong></td>
@@ -2734,7 +2694,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.6</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Sequestro di membro governativo</strong></td>
@@ -2743,7 +2703,7 @@ dell'autorità giudiziaria</td>
                                                 <td style="font-size:0.82rem;">Richiesta Processo</td>
                                             </tr>
 
-                                            <tr>
+                                            <tr class="cp-crime-row">
                                                 <td><strong style="color:var(--navy-primary); font-family:var(--font-code);">Art. I.P.7.7</strong></td>
                                                 <td style="text-align:center;"><span class="cp-class-badge cp-class-P">P</span></td>
                                                 <td><strong style="color:var(--text-heading);">Oltraggio alle Alte Cariche Istituzionali.</strong></td>
@@ -2760,7 +2720,7 @@ dell'autorità giudiziaria</td>
 
                         <div id="sub-cp-note" class="sub-tab-content" style="display:none;">
                             <div class="white-card">
-                                <div class="card-header-bar"><h2 class="card-header-title"><i class="fa-solid fa-clipboard-check"></i> Note & Disposizioni Generali</h2></div>
+                                <div class="card-header-bar"><h2 class="card-header-title"><i class="fa-solid fa-clipboard-check"></i> Note & Disposizioni Generali Codice Penale</h2></div>
                                 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.2rem;">
 
                                     <div style="background:#f8fafc; border:1px solid var(--border-gold); border-left:4px solid var(--navy-primary); padding:1.2rem; border-radius:var(--radius-md);">
@@ -2812,6 +2772,471 @@ dell'autorità giudiziaria</td>
                                         <p style="font-size:0.88rem; color:var(--text-body);">Si precisa che la Contea di Los Santos non riconosce né approva i certificati rilasciati dall’EMS relativi all’uso personale di sostanze stupefacenti. Ai sensi dell’art. I.P.3.8, il possesso anche di un solo grammo di sostanza stupefacente costituisce reato ed è sanzionato secondo legge.</p>
                                     </div>
 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sub-cp-procedura" class="sub-tab-content" style="display:none;">
+                            <div class="white-card">
+                                <div class="card-header-bar">
+                                    <h2 class="card-header-title">
+                                        <i class="fa-solid fa-scale-balanced"></i> Codice di Procedura Penale e Civile
+                                    </h2>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:90px;">Numero</th>
+                                                <th style="width:110px; text-align:center;">Tipologia</th>
+                                                <th>Definizione & Procedura Applicabile</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.1</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#eff6ff; color:#2563eb; border:1px solid #60a5fa;">
+                                                        TIPOLOGIA T
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">L'Ergastolo può essere concesso solo dal Giudice durante un processo.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.2</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#eff6ff; color:#2563eb; border:1px solid #60a5fa;">
+                                                        TIPOLOGIA T
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il Mandato di Cattura prevede l'assegnazione di una multa extra pari a $75.000</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.3</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Compiere un reato di classe A nell'arco di una settimana dopo il processo comporta un secondo rinvio a giudizio.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.4</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il raggiungimento di 5 arresti di cui per ognuno contenenti almeno 1 reato di classe A comporta il rinvio a giudizio.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.5</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#eff6ff; color:#2563eb; border:1px solid #60a5fa;">
+                                                        TIPOLOGIA T
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">La reiterazione dello stesso reato rimandabile a processo è considerato come aggravante, e prevede l'aumento della pena scelta del Giudice di 1/3</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.6</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#eff6ff; color:#2563eb; border:1px solid #60a5fa;">
+                                                        TIPOLOGIA T
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Le uniche fonti e leggi utilizzabili sono quelle presenti nel Codice Penale di Emerals</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.7</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Le prove per un processo penale, come per quello civile, devono essere deposititate 60 minuti prima del processo e in un database di comune accesso tra le parti: tutte le prove deposistate in ritardo non potranno essere utilizzate. Salvo comune accordo</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.8</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">L'Ergastolo può essere concesso solo dal Giudice durante un processo.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">1.9</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il Mandato di Cattura prevede l'assegnazione di una multa extra pari a $75.001</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.0</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Compiere un reato di classe A nell'arco di una settimana dopo il processo comporta un secondo rinvio a giudizio.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.1</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il raggiungimento di 5 arresti di cui per ognuno contenenti almeno 1 reato di classe A comporta il rinvio a giudizio.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.2</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">La reiterazione dello stesso reato rimandabile a processo è considerato come aggravante, e prevede l'aumento della pena scelta del Giudice di 1/4</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.3</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#eff6ff; color:#2563eb; border:1px solid #60a5fa;">
+                                                        TIPOLOGIA T
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Le uniche fonti e leggi utilizzabili sono quelle presenti nel Codice Penale di Emerals</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.4</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Le prove per un processo penale, come per quello civile, devono essere deposititate 60 minuti prima del processo e in un database di comune accesso tra le parti: tutte le prove deposistate in ritardo non potranno essere utilizzate. Salvo comune accordo</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.5</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">L'Ergastolo può essere concesso solo dal Giudice durante un processo.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.6</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il Mandato di Cattura prevede l'assegnazione di una multa extra pari a $75.002</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.7</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Compiere un reato di classe A nell'arco di una settimana dopo il processo comporta un secondo rinvio a giudizio.</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="font-family:var(--font-code); color:var(--navy-primary);">2.8</strong></td>
+                                                <td style="text-align:center;">
+                                                    <span style="display:inline-block; font-weight:800; padding:2px 10px; border-radius:12px; font-size:0.78rem; background:#faf5ff; color:#7e22ce; border:1px solid #c084fc;">
+                                                        TIPOLOGIA P
+                                                    </span>
+                                                </td>
+                                                <td style="font-size:0.9rem; font-weight:600; color:var(--text-heading);">Il raggiungimento di 5 arresti di cui per ognuno contenenti almeno 1 reato di classe A comporta il rinvio a giudizio.</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- NOTES FOR PROCEDURES -->
+                                <h3 style="color:var(--navy-primary); font-family:var(--font-title); margin:1.8rem 0 0.8rem 0;">Legenda Tipologie di Procedura:</h3>
+                                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+
+                                    <div style="background:#f8fafc; border:1px solid var(--border-gold); padding:1rem; border-radius:var(--radius-md);">
+                                        <strong style="color:var(--navy-primary); font-family:var(--font-code); display:block; margin-bottom:0.3rem;">
+                                            TIPOLOGIA "P":
+                                        </strong>
+                                        <p style="font-size:0.85rem; color:var(--text-body);">Indica una procedura utilizzata per portare a processo un cittadino
+ o un membro FDO</p>
+                                    </div>
+
+                                    <div style="background:#f8fafc; border:1px solid var(--border-gold); padding:1rem; border-radius:var(--radius-md);">
+                                        <strong style="color:var(--navy-primary); font-family:var(--font-code); display:block; margin-bottom:0.3rem;">
+                                            TIPOLOGIA "T":
+                                        </strong>
+                                        <p style="font-size:0.85rem; color:var(--text-body);">Indica una procedura applicabile solo in sede di processo o a
+ seguito dello stesso</p>
+                                    </div>
+
+                                    <div style="background:#f8fafc; border:1px solid var(--border-gold); padding:1rem; border-radius:var(--radius-md);">
+                                        <strong style="color:var(--navy-primary); font-family:var(--font-code); display:block; margin-bottom:0.3rem;">
+                                            TIPOLOGIA "P":
+                                        </strong>
+                                        <p style="font-size:0.85rem; color:var(--text-body);">Indica una procedura standardizzata utilizzata dalle FDO</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sub-cp-armi" class="sub-tab-content" style="display:none;">
+                            <div class="white-card">
+                                <div class="card-header-bar">
+                                    <h2 class="card-header-title">
+                                        <i class="fa-solid fa-gun"></i> Classificazione Ufficiale delle Armi
+                                    </h2>
+                                </div>
+
+                                <div style="background:#fef2f2; border:2px solid var(--crimson-accent); border-radius:var(--radius-md); padding:1rem 1.2rem; margin-bottom:1.2rem;">
+                                    <strong style="color:var(--crimson-accent); font-size:0.92rem; display:flex; align-items:center; gap:0.5rem;">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> DISPOSIZIONE TASSATIVA ARMI:
+                                    </strong>
+                                    <p style="font-size:0.88rem; color:#991b1b; font-weight:700; margin-top:0.2rem;">
+                                        TUTTE LE TIPOLOGIE DI ARMI NON SPECIFICATE SONO DA CONSIDERARSI ILLEGALI
+                                    </p>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome Arma</th>
+                                                <th>Tipologia Munizioni</th>
+                                                <th>Classificazione / Legittimità</th>
+                                                <th>Tipologia di Arma</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola 9mm</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola Calibro 50</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">.50AE</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola Vintage</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola SNS</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">.45ACP</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Fucile da caccia</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Taser</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Coltello</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Manganello</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Mazza da Baseball</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#ecfdf5; color:#059669; border:1px solid #34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">LEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Tirapugni</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Carabina Speciale MK2</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Carabina Speciale (G36C)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Fucile D'Assalto (Ak-47)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">7.62</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Fucile Compatto (Mini-Ak)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">7.62</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">SMG MK2</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Micro SMG (UZI)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">.45ACP</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola MK2</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Machete</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Coltello a Serramanico</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#fef2f2; color:#dc2626; border:1px solid #f87171; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Manganello Elettrico</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">/</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">BIANCA</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Cecchino pesante</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">.50BMG</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Cecchino leggero</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">7.62NATO</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Fucile Tattico (M16A2)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Carabina (HK416)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">SMG d'Assalto (P90)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">5.56</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">SMG (MP5)</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">PDW da Combattimento</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong style="color:var(--text-heading); font-size:0.92rem;">Pistola da Combattimento</strong></td>
+                                                <td><span style="font-family:var(--font-code); color:var(--navy-primary); font-weight:700;">9mm</span></td>
+                                                <td><span style="background:#fffbeb; color:#d97706; border:1px solid #fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.78rem;">ILLEGALE PER I CIVILI</span></td>
+                                                <td><span style="font-weight:700; color:var(--text-muted);">DA FUOCO</span></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -5225,7 +5650,7 @@ dell'autorità giudiziaria</td>
         <span id="toastMsg">Copiato negli appunti!</span>
     </div>
 
-    <!-- JAVASCRIPT ENGINE (CLEAN SINGLE BRACES SYNTAX) -->
+    <!-- JAVASCRIPT ENGINE -->
     <script>
         // Welcome Screen Dismissal
         function enterSite() {
@@ -5351,7 +5776,7 @@ dell'autorità giudiziaria</td>
             }
         }
 
-        // Codice Penale Filter
+        // Codice Penale Search Filter
         function filterCodicePenale() {
             var filterInput = document.getElementById('cpFilterInput');
             if (!filterInput) return;
@@ -5360,7 +5785,7 @@ dell'autorità giudiziaria</td>
             var activeSub = document.querySelector('#view-codice-penale .sub-tab-content[style*="display: block"], #view-codice-penale .sub-tab-content:not([style*="display: none"])');
             if (!activeSub) return;
 
-            var rows = activeSub.querySelectorAll('.cp-table tbody tr');
+            var rows = activeSub.querySelectorAll('.cp-crime-row');
             rows.forEach(function(tr) {
                 if (tr.innerText.toLowerCase().indexOf(filter) !== -1) {
                     tr.style.display = '';
@@ -5476,7 +5901,7 @@ dell'autorità giudiziaria</td>
             if (!searchInput) return;
             var query = searchInput.value.toLowerCase().trim();
 
-            var cards = document.querySelectorAll('.white-card, .big-cat-btn, .calc-crime-item');
+            var cards = document.querySelectorAll('.white-card, .big-cat-btn, .calc-crime-item, .cp-crime-row');
             cards.forEach(function(card) {
                 if (!query) {
                     card.style.border = '';
@@ -5491,5 +5916,5 @@ dell'autorità giudiziaria</td>
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1ca6c886a1c4c51',t:'MTc4NDMwMzY1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1ca7d05db71bac4',t:'MTc4NDMwNDMyOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
