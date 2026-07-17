@@ -65,12 +65,13 @@
             --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* STRICT ROOT STACKING CONTEXT & NO BLUR */
+        /* STRICT VIEWPORT LOCK & ZERO BLUR */
         html, body {
             height: 100%;
+            min-height: 100dvh;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Lock main body window */
+            overflow: hidden;
             background-color: var(--bg-body);
             color: var(--text-body);
             font-family: var(--font-body);
@@ -255,7 +256,18 @@
             background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
         }
 
-        /* FIXED MOBILE BACKDROP (Z-INDEX 8000, NO BLUR, NO OBFUSCATION) */
+        /* APP LAYOUT STRUCTURE */
+        .app-layout {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            min-height: 100dvh;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* MOBILE OVERLAY BACKDROP (Z-INDEX 8000) */
         #mobileBackdrop {
             display: none;
             position: fixed;
@@ -267,7 +279,7 @@
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             filter: none !important;
-            z-index: 8000 !important; /* LOWER THAN SIDEBAR (9000) */
+            z-index: 8000 !important;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -279,16 +291,17 @@
             pointer-events: auto !important;
         }
 
-        /* ================= SIDEBAR NAVIGAZIONE A SINISTRA (DIRECT BODY CHILD, Z-INDEX 9000) ================= */
+        /* ================= SIDEBAR NAVIGAZIONE A SINISTRA (Z-INDEX 9000) ================= */
         .app-sidebar {
             width: var(--sidebar-width);
             height: 100vh;
+            height: 100dvh;
             background: var(--bg-sidebar);
             border-right: 2px solid var(--border-gold);
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
-            z-index: 9000 !important; /* STRICTLY HIGHER THAN MOBILE BACKDROP (8000) */
+            z-index: 9000 !important;
             box-shadow: 5px 0 25px rgba(0, 40, 85, 0.12);
             pointer-events: auto !important;
             position: relative;
@@ -354,9 +367,9 @@
         /* INDEPENDENT SIDEBAR SCROLL AREA */
         .sidebar-scroll-area {
             flex: 1;
-            overflow-y: auto; /* Independent category scroll! */
+            overflow-y: auto;
             overscroll-behavior: contain;
-            padding: 1rem 0.8rem;
+            padding: 1rem 0.8rem 6rem 0.8rem !important;
             display: flex;
             flex-direction: column;
             gap: 0.4rem;
@@ -421,7 +434,7 @@
             color: var(--gold-bright);
         }
 
-        /* Submenu inside Sidebar for Codice Penale V2 */
+        /* Submenu inside Sidebar */
         .sidebar-sub-group {
             display: none;
             flex-direction: column;
@@ -469,6 +482,7 @@
             border-top: 1px solid var(--border-light);
             background: var(--bg-panna);
             font-size: 0.75rem;
+            flex-shrink: 0;
         }
 
         .leadership-card {
@@ -483,6 +497,7 @@
         .main-content-wrapper {
             flex: 1;
             height: 100vh;
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -586,9 +601,9 @@
         /* INDEPENDENT MAIN SCROLL AREA */
         .main-scroll-area {
             flex: 1;
-            overflow-y: auto; /* Independent main page scroll! */
+            overflow-y: auto;
             overscroll-behavior: contain;
-            padding: 1.5rem 2rem;
+            padding: 1.5rem 2rem 7rem 2rem !important;
             display: flex;
             flex-direction: column;
             filter: none !important;
@@ -661,7 +676,7 @@
             box-shadow: 0 2px 10px rgba(0, 40, 85, 0.2);
         }
 
-        /* DISCORD SHORTCUT CARDS FOR HOMEPAGE */
+        /* DISCORD SHORTCUT CARDS */
         .discord-shortcuts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -744,7 +759,7 @@
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
-        /* HERO BANNER STRICT DEEP NAVY BLUE (ALWAYS BLUE ON ALL SCREENS) */
+        /* HERO BANNER STRICT DEEP NAVY BLUE */
         .hero-banner {
             background-color: #001233 !important;
             background: linear-gradient(135deg, #001233 0%, #002855 100%),
@@ -1001,7 +1016,7 @@
         .cp-class-D { background: #eff6ff; color: #2563eb; border: 2px solid #60a5fa; }
         .cp-class-E { background: #ecfdf5; color: #059669; border: 2px solid #34d399; }
 
-        /* CALCOLA REATI DASHBOARD */
+        /* CALCOLA REATI DASHBOARD (INLINE NON-STICKY FLOW) */
         .calc-reati-dashboard {
             background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%);
             color: #ffffff;
@@ -1010,9 +1025,9 @@
             padding: 1.5rem;
             margin-bottom: 1.8rem;
             box-shadow: var(--shadow-gold);
-            position: sticky;
-            top: 0;
-            z-index: 500;
+            position: relative !important; /* INLINE FLOW, NEVER COVERS SCROLLING CRIMES! */
+            top: auto !important;
+            z-index: 10 !important;
         }
 
         .calc-summary-grid {
@@ -1125,16 +1140,16 @@
             font-weight: 600;
         }
 
-        /* ================= MOBILE ADVANCED MEDIA QUERIES (FIXED STACKING Z-INDEX) ================= */
+        /* ================= MOBILE ADVANCED MEDIA QUERIES (STRICT Z-INDEX HIGHER THAN BACKDROP) ================= */
         @media (max-width: 1024px) {
             .app-sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                bottom: 0;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                bottom: 0 !important;
                 transform: translateX(-100%);
                 transition: transform 0.35s var(--ease-fluid);
-                z-index: 9000 !important; /* DIRECT BODY CHILD ABOVE BACKDROP (8000) */
+                z-index: 9000 !important; /* DIRECT BODY CHILD STRICTLY ABOVE BACKDROP (8000) */
                 pointer-events: auto !important;
             }
 
@@ -1148,7 +1163,7 @@
             }
 
             .main-scroll-area {
-                padding: 1rem;
+                padding: 1rem 1rem 8rem 1rem !important;
             }
 
             .big-categories-grid {
@@ -1215,7 +1230,7 @@
         <div class="watermark-text">Governo • Razer RP • Dipartimento di Giustizia</div>
     </div>
 
-    <!-- MOBILE OVERLAY BACKDROP (Z-INDEX 8000) -->
+    <!-- MOBILE OVERLAY BACKDROP (Z-INDEX 8000, NO BLUR) -->
     <div id="mobileBackdrop" onclick="closeSidebarMobile()"></div>
 
     <!-- WELCOME OVERLAY / SPLASH SCREEN (Z-INDEX 999999) -->
@@ -1315,7 +1330,7 @@
             </div>
         </div>
 
-        <!-- Sidebar Bottom Info -->
+        <!-- Sidebar Bottom Info (Organigramma Sempre Visibile) -->
         <div class="sidebar-footer-info">
             <div class="leadership-card">
                 <div style="font-size:0.7rem; color:var(--navy-primary); font-weight:800; margin-bottom:2px; text-transform:uppercase;">
@@ -1464,7 +1479,7 @@
                                     <strong style="color: var(--navy-primary);">Codice Penale V2 Aggiornato:</strong> Integrate la Procedura Penale/Civile e la Classificazione Ufficiale delle Armi.
                                 </li>
                                 <li style="border-left: 3px solid var(--navy-primary); padding-left: 0.8rem;">
-                                    <strong style="color: var(--navy-primary);">Calcolatore Reati Integrato:</strong> Selezione multipla con blocco reati Classe P e limite max 60 mesi.
+                                    <strong style="color: var(--navy-primary);">Calcolatore Reati Integrato:</strong> Selezione multipla con blocco reati Classe P, lista opzioni attive deselezionabili e limite max 60 mesi.
                                 </li>
                                 <li style="border-left: 3px solid var(--crimson-accent); padding-left: 0.8rem;">
                                     <strong style="color: var(--crimson-accent);">Divieto Tassativo Fedina:</strong> Il calcolo della pulizia fedina è riservato ESCLUSIVAMENTE alla Procura.
@@ -3414,23 +3429,18 @@ dell'autorità giudiziaria</td>
                             </h2>
                         </div>
 
-                        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1.5rem;">
+                        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:1.2rem;">
                             Seleziona i reati commessi dal cittadino per calcolare automaticamente il totale delle sanzioni e della pena detentiva. 
                             <strong style="color:var(--crimson-accent);">I reati di Classe P sono riservati esclusivamente a giudizio del Giudice in tribunale e non sono selezionabili.</strong>
                         </p>
 
-                        <!-- STICKY SUMMARY DASHBOARD -->
+                        <!-- INLINE SUMMARY DASHBOARD CON SEZIONE REATI SELEZIONATI RIMOZIONE DEDICATA -->
                         <div class="calc-reati-dashboard">
-                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-                                <div>
-                                    <h3 style="font-family:var(--font-title); font-size:1.3rem; color:var(--gold-light);">
-                                        <i class="fa-solid fa-receipt"></i> RIEPILOGO SANZIONI E DETENZIONE
-                                    </h3>
-                                    <div style="font-size:0.85rem; color:#cbd5e1;">Calcolo in tempo reale su reati selezionati</div>
-                                </div>
-                                <button class="copy-btn" style="position:static; padding:0.6rem 1.2rem; font-size:0.85rem;" onclick="copyCrimeSummary()">
-                                    <i class="fa-solid fa-copy"></i> Copia Verbale Arresto per Discord
-                                </button>
+                            <div>
+                                <h3 style="font-family:var(--font-title); font-size:1.3rem; color:var(--gold-light);">
+                                    <i class="fa-solid fa-receipt"></i> RIEPILOGO SANZIONI E DETENZIONE
+                                </h3>
+                                <div style="font-size:0.85rem; color:#cbd5e1;">Calcolo in tempo reale su reati selezionati</div>
                             </div>
 
                             <div class="calc-summary-grid">
@@ -3450,6 +3460,21 @@ dell'autorità giudiziaria</td>
 
                             <div id="capWarningBadge" style="display:none; background:rgba(220,38,38,0.3); border:1px solid #f87171; padding:0.6rem 1rem; border-radius:var(--radius-md); margin-top:1rem; font-size:0.82rem; font-weight:700; color:#fecaca;">
                                 🚨 RAGGIUNTO IL LIMITE MASSIMO DI DETENZIONE PARI A 60 MESI!
+                            </div>
+
+                            <!-- MOSTRA REATI SELEZIONATI CON TASTO RIMOZIONE SINGOLO E CLEAR ALL -->
+                            <div style="margin-top: 1.2rem; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1rem;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.5rem;">
+                                    <span style="font-size:0.82rem; font-weight:800; color:var(--gold-light); text-transform:uppercase; letter-spacing:0.8px; display:flex; align-items:center; gap:0.5rem;">
+                                        <i class="fa-solid fa-list-check"></i> Reati Attualmente Selezionati (<span id="selectedCountBadge">0</span>)
+                                    </span>
+                                    <button id="btnClearAllCrimes" onclick="clearAllCrimes()" style="display:none; background:rgba(220,38,38,0.35); border:1px solid #f87171; color:#ffffff; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:15px; cursor:pointer; font-family:var(--font-body); transition:all 0.2s ease;">
+                                        <i class="fa-solid fa-trash-can"></i> Deseleziona Tutti
+                                    </button>
+                                </div>
+                                <div id="selectedCrimesListTags" style="display:flex; flex-wrap:wrap; gap:0.5rem; min-height:28px; align-items:center;">
+                                    <span style="font-size:0.82rem; color:#cbd5e1; font-style:italic;">Nessun reato selezionato. Spunta i reati nell'elenco sottostante.</span>
+                                </div>
                             </div>
                         </div>
 
@@ -5853,11 +5878,10 @@ dell'autorità giudiziaria</td>
                 mainScroll.scrollTop = 0;
             }
 
-            // Close mobile menu ON DIRECT LEAF PAGE NAVIGATION
             closeSidebarMobile();
         }
 
-        // Sidebar Accordion Toggle WITHOUT closing Mobile Sidebar!
+        // Sidebar Accordion Toggle
         function toggleSubMenu(subMenuId, parentViewId) {
             var subMenu = document.getElementById(subMenuId);
             var isOpen = subMenu ? subMenu.classList.contains('open') : false;
@@ -5871,7 +5895,6 @@ dell'autorità giudiziaria</td>
                 subMenu.classList.add('open');
             }
 
-            // Show parent view WITHOUT closing sidebar on mobile!
             var sections = document.querySelectorAll('.view-section');
             for (var j = 0; j < sections.length; j++) {
                 sections[j].classList.remove('active');
@@ -5929,11 +5952,10 @@ dell'autorità giudiziaria</td>
                 mainScroll.scrollTop = 0;
             }
 
-            // Close mobile menu AFTER selecting a sub-item
             closeSidebarMobile();
         }
 
-        // Mobile Sidebar & Backdrop Handlers (Z-INDEX SAFE)
+        // Mobile Sidebar & Backdrop Handlers
         function toggleSidebarMobile() {
             var sidebar = document.getElementById('appSidebar');
             var backdrop = document.getElementById('mobileBackdrop');
@@ -5998,7 +6020,7 @@ dell'autorità giudiziaria</td>
             });
         }
 
-        // ================= CALCOLA REATI LIVE CALCULATION LOGIC =================
+        // ================= CALCOLA REATI LIVE CALCULATION LOGIC & VISUAL SELECTED OPTIONS =================
         var selectedCrimesList = [];
 
         function recalculateCrimes() {
@@ -6007,11 +6029,17 @@ dell'autorità giudiziaria</td>
 
             var totalFineMin = 0;
             var totalJailMonths = 0;
+            var tagsContainer = document.getElementById('selectedCrimesListTags');
+            var countBadge = document.getElementById('selectedCountBadge');
+            var btnClearAll = document.getElementById('btnClearAllCrimes');
+
+            var tagsHtml = "";
 
             checkboxes.forEach(function(chk) {
                 var rawData = chk.getAttribute('data-art');
                 if (rawData) {
                     var data = JSON.parse(rawData);
+                    data.chkId = chk.id;
                     selectedCrimesList.push(data);
 
                     // Parse fine numbers
@@ -6029,8 +6057,24 @@ dell'autorità giudiziaria</td>
                     if (jailNums && jailNums.length > 0) {
                         totalJailMonths += parseInt(jailNums[0]);
                     }
+
+                    // Render interactive removal tag pill
+                    tagsHtml += '<div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(255,255,255,0.14); border:1px solid var(--gold-primary); padding:5px 12px; border-radius:20px; font-size:0.82rem; color:#ffffff; box-shadow:var(--shadow-sm);">' +
+                        '<strong style="color:var(--gold-bright); font-family:var(--font-code);">' + data.art + '</strong> ' + data.reato + ' ' +
+                        '<i class="fa-solid fa-circle-xmark" style="color:#f87171; cursor:pointer; font-size:0.95rem; margin-left:3px;" onclick="uncheckCrime(&quot;' + chk.id + '&quot;)" title="Rimuovi questo reato"></i>' +
+                        '</div>';
                 }
             });
+
+            if (selectedCrimesList.length === 0) {
+                tagsHtml = '<span style="font-size:0.82rem; color:#cbd5e1; font-style:italic;">Nessun reato selezionato. Spunta i reati nell&apos;elenco sottostante per aggiungerli.</span>';
+                if (btnClearAll) btnClearAll.style.display = 'none';
+            } else {
+                if (btnClearAll) btnClearAll.style.display = 'inline-flex';
+            }
+
+            if (tagsContainer) tagsContainer.innerHTML = tagsHtml;
+            if (countBadge) countBadge.innerText = selectedCrimesList.length;
 
             // CAP DETENTION AT MAX 60 MONTHS
             var rawJail = totalJailMonths;
@@ -6055,30 +6099,21 @@ dell'autorità giudiziaria</td>
             }
         }
 
-        function copyCrimeSummary() {
-            if (selectedCrimesList.length === 0) {
-                showToast("Seleziona almeno un reato!");
-                return;
+        function uncheckCrime(chkId) {
+            var chk = document.getElementById(chkId);
+            if (chk) {
+                chk.checked = false;
+                recalculateCrimes();
             }
+        }
 
-            var crimeNames = selectedCrimesList.map(function(c) {
-                return "• " + c.art + " - " + c.reato + " [Classe " + c.classe + "]";
-            }).join("\n");
-
-            var totalFine = document.getElementById('summaryFineTotal').innerText;
-            var totalJail = document.getElementById('summaryJailTotal').innerText;
-            var today = new Date().toLocaleDateString('it-IT');
-
-            var text = "--- RIEPILOGO VERBALE ARRESTO & REATI ---\n" +
-                       "DATA: " + today + "\n\n" +
-                       "REATI CONTESTATI:\n" + crimeNames + "\n\n" +
-                       "TOTALE SANZIONE PECUNIARIA: " + totalFine + "\n" +
-                       "TOTALE MESI DETENZIONE: " + totalJail + "\n" +
-                       "(Note: Max 60 mesi di carcere previsti da codice)";
-
-            navigator.clipboard.writeText(text).then(function() {
-                showToast("Verbale Reati Copiato per Discord!");
+        function clearAllCrimes() {
+            var checkboxes = document.querySelectorAll('.crime-chk:checked');
+            checkboxes.forEach(function(chk) {
+                chk.checked = false;
             });
+            recalculateCrimes();
+            showToast("Tutti i reati deselezionati!");
         }
 
         // Global Universal Search Filter
