@@ -267,7 +267,7 @@
             z-index: 1;
         }
 
-        /* MOBILE OVERLAY BACKDROP (Z-INDEX 8000) */
+        /* FIXED MOBILE OVERLAY BACKDROP (Z-INDEX 8000, NO BLUR) */
         #mobileBackdrop {
             display: none;
             position: fixed;
@@ -291,7 +291,7 @@
             pointer-events: auto !important;
         }
 
-        /* ================= SIDEBAR NAVIGAZIONE A SINISTRA (Z-INDEX 9000) ================= */
+        /* ================= SIDEBAR NAVIGAZIONE A SINISTRA (DIRECT BODY CHILD, Z-INDEX 9000) ================= */
         .app-sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -598,7 +598,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
         }
 
-        /* INDEPENDENT MAIN SCROLL AREA */
+        /* INDEPENDENT MAIN SCROLL AREA WITH GENEROUS BOTTOM PADDING */
         .main-scroll-area {
             flex: 1;
             overflow-y: auto;
@@ -1016,7 +1016,7 @@
         .cp-class-D { background: #eff6ff; color: #2563eb; border: 2px solid #60a5fa; }
         .cp-class-E { background: #ecfdf5; color: #059669; border: 2px solid #34d399; }
 
-        /* CALCOLA REATI DASHBOARD (INLINE NON-STICKY FLOW) */
+        /* CALCOLA REATI DASHBOARD (INLINE FLOW, NEVER COVERS SCROLLING CRIMES!) */
         .calc-reati-dashboard {
             background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%);
             color: #ffffff;
@@ -1025,7 +1025,7 @@
             padding: 1.5rem;
             margin-bottom: 1.8rem;
             box-shadow: var(--shadow-gold);
-            position: relative !important; /* INLINE FLOW, NEVER COVERS SCROLLING CRIMES! */
+            position: relative !important;
             top: auto !important;
             z-index: 10 !important;
         }
@@ -1230,7 +1230,7 @@
         <div class="watermark-text">Governo • Razer RP • Dipartimento di Giustizia</div>
     </div>
 
-    <!-- MOBILE OVERLAY BACKDROP (Z-INDEX 8000, NO BLUR) -->
+    <!-- MOBILE OVERLAY BACKDROP (Z-INDEX 8000) -->
     <div id="mobileBackdrop" onclick="closeSidebarMobile()"></div>
 
     <!-- WELCOME OVERLAY / SPLASH SCREEN (Z-INDEX 999999) -->
@@ -1278,7 +1278,7 @@
             </div>
         </div>
 
-        <!-- INDEPENDENT SIDEBAR SCROLL AREA -->
+        <!-- INDEPENDENT SIDEBAR SCROLL AREA (EXTRA BOTTOM PADDING FOR ORGANIGRAMMA VISIBILITY) -->
         <div class="sidebar-scroll-area">
             <div class="nav-category-title">Menu Principale</div>
 
@@ -5849,7 +5849,7 @@ dell'autorità giudiziaria</td>
             }
         }
 
-        // Main Page Navigation
+        // Main Page Navigation Engine (Ensures View Sub-Contents ARE ALWAYS Displayed)
         function navigatePage(viewId) {
             var sections = document.querySelectorAll('.view-section');
             for (var i = 0; i < sections.length; i++) {
@@ -5864,6 +5864,30 @@ dell'autorità giudiziaria</td>
             var targetView = document.getElementById('view-' + viewId);
             if (targetView) {
                 targetView.classList.add('active');
+
+                // GUARANTEE NO SUB-TAB IS EVER HIDDEN OR BLANK WHEN VIEWING A CATEGORY!
+                var subContents = targetView.querySelectorAll('.sub-tab-content');
+                if (subContents.length > 0) {
+                    var hasVisibleSub = false;
+                    for (var k = 0; k < subContents.length; k++) {
+                        if (subContents[k].style.display === 'block') {
+                            hasVisibleSub = true;
+                            break;
+                        }
+                    }
+
+                    // If no sub-tab is marked as block, force the first sub-tab to display!
+                    if (!hasVisibleSub) {
+                        for (var m = 0; m < subContents.length; m++) {
+                            subContents[m].style.display = (m === 0) ? 'block' : 'none';
+                        }
+                        var subPills = targetView.querySelectorAll('.sub-pill-btn');
+                        for (var p = 0; p < subPills.length; p++) {
+                            if (p === 0) subPills[p].classList.add('active');
+                            else subPills[p].classList.remove('active');
+                        }
+                    }
+                }
             }
 
             var matchBtn = Array.from(navBtns).find(function(b) {
@@ -5881,7 +5905,7 @@ dell'autorità giudiziaria</td>
             closeSidebarMobile();
         }
 
-        // Sidebar Accordion Toggle
+        // Sidebar Submenu Toggle
         function toggleSubMenu(subMenuId, parentViewId) {
             var subMenu = document.getElementById(subMenuId);
             var isOpen = subMenu ? subMenu.classList.contains('open') : false;
@@ -5895,14 +5919,7 @@ dell'autorità giudiziaria</td>
                 subMenu.classList.add('open');
             }
 
-            var sections = document.querySelectorAll('.view-section');
-            for (var j = 0; j < sections.length; j++) {
-                sections[j].classList.remove('active');
-            }
-            var targetView = document.getElementById('view-' + parentViewId);
-            if (targetView) {
-                targetView.classList.add('active');
-            }
+            navigatePage(parentViewId);
         }
 
         // Sub-Tab Switcher inside Page Views
