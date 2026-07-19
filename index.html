@@ -992,6 +992,8 @@
             font-weight: 800;
             color: #059669;
             font-family: var(--font-code);
+            white-space: nowrap;
+            display: inline-block;
         }
 
         .stipend-badge {
@@ -5746,16 +5748,16 @@ dell'autorità giudiziaria</td>
                     </div>
                 </section>
 
-                <!-- ================= SECTION: LISTINO PREZZI UFFICIALE ================= -->
+                                                                <!-- ================= SECTION: LISTINO PREZZI UFFICIALE ================= -->
                 <section id="view-listino" class="view-section">
                     <div class="white-card">
                         <div class="card-header-bar">
                             <h2 class="card-header-title"><i class="fa-solid fa-file-invoice-dollar"></i> Listino Prezzi Ufficiale Documenti</h2>
                         </div>
 
-                        <!-- Table Avvocatura -->
-                        <h3 style="color:var(--navy-primary); font-family:var(--font-title); margin:1rem 0 0.8rem 0;">
-                            📜 Documenti per <span class="discord-tag tag-avvocato">@⠀⠀⠀⠀Avvocatura⠀⠀⠀⠀</span>
+                        <!-- Table Avvocatura / Documenti Generali -->
+                        <h3 style="color:var(--navy-primary); font-family:var(--font-title); margin:1.2rem 0 0.8rem 0;">
+                            📜 Documenti e Servizi <span class="discord-tag tag-avvocato">@⠀⠀⠀⠀Avvocatura⠀⠀⠀⠀</span>
                         </h3>
                         <div class="table-responsive">
                             <table class="custom-table">
@@ -5763,28 +5765,31 @@ dell'autorità giudiziaria</td>
                                     <tr>
                                         <th>Tipo Documento</th>
                                         <th>Prezzo Ufficiale</th>
-                                        <th>Compenso Personale</th>
                                         <th>Durata Validità</th>
                                         <th>Grado Minimo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>CARTA DI IDENTITA</td><td><span class="price-badge">$2.000</span></td><td><span class="stipend-badge">$1.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>PATENTE (mostrare cert.)</td><td><span class="price-badge">$2.500</span></td><td><span class="stipend-badge">$1.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>DOC. LAVORATIVO TIROCINANTE</td><td><span class="price-badge">$3.000</span></td><td><span class="stipend-badge">$1.000</span></td><td>7 giorni</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>DOC. LAVORATIVO DIPENDENTE</td><td><span class="price-badge">$5.000</span></td><td><span class="stipend-badge">$2.000</span></td><td>15 giorni</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>DOC. LAVORATIVO DIRETTORE</td><td><span class="price-badge">$10.000</span></td><td><span class="stipend-badge">$3.000</span></td><td>30 giorni</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>PERMESSO VETRI OSCURATI</td><td><span class="price-badge">$30.000 / targa</span></td><td><span class="stipend-badge">$10.000 / targa</span></td><td>30 giorni</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>CERTIFICATO DI PARENTELA</td><td><span class="price-badge">$10.000</span></td><td><span class="stipend-badge">$4.000</span></td><td>Fino alla revoca</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>CERTIFICATO DI MATRIMONIO</td><td><span class="price-badge">$15.000</span></td><td><span class="stipend-badge">$4.000</span></td><td>Fino al divorzio</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
-                                    <tr><td>VENDITA AMBULANTE</td><td><span class="price-badge">$15.000</span></td><td><span class="stipend-badge">$5.000</span></td><td>30 giorni</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Carta d'Identità</td><td><span class="price-badge">$2.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Patente</td><td><span class="price-badge">$3.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Info Precedenti Penali</td><td><span class="price-badge">$3.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Doc. Lavorativo Tirocinante</td><td><span class="price-badge">$4.000</span></td><td>2 settimane</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Doc. Lavorativo Dipendente</td><td><span class="price-badge">$10.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Doc. Lavorativo Direttore</td><td><span class="price-badge">$30.000</span></td><td>3 mesi</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Documento Vendita Ambulante</td><td><span class="price-badge">$15.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Permesso Vetri Oscurati</td><td><span class="price-badge">$30.000 / targa</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Certificato di Parentela</td><td><span class="price-badge">$15.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Certificato di Matrimonio</td><td><span class="price-badge">$15.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Certificato Revoca Parentela o Matrimonio</td><td><span class="price-badge">$15.000</span></td><td>Permanente (Sempre)</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Richiesta Pulizia Fedina</td><td><span class="price-badge">$20.000</span></td><td>2 settimane</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Porto d'Armi</td><td><span class="price-badge">$35.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <!-- Table Procura -->
-                        <h3 style="color:var(--crimson-accent); font-family:var(--font-title); margin:2rem 0 0.8rem 0;">
-                            🛡️ Documenti per la <span class="discord-tag tag-procura">@⠀⠀⠀⠀Procura⠀⠀⠀⠀</span>
+                        <!-- Table Procura - Servizi Generali -->
+                        <h3 style="color:var(--crimson-accent); font-family:var(--font-title); margin:2.2rem 0 0.8rem 0;">
+                            🛡️ Documenti e Permessi per la <span class="discord-tag tag-procura">@⠀⠀⠀⠀Procura⠀⠀⠀⠀</span>
                         </h3>
                         <div class="table-responsive">
                             <table class="custom-table">
@@ -5792,13 +5797,35 @@ dell'autorità giudiziaria</td>
                                     <tr>
                                         <th>Servizio Procura</th>
                                         <th>Prezzo Ufficiale</th>
-                                        <th>Compenso Personale</th>
-                                        <th>Note</th>
+                                        <th>Durata Validità</th>
                                         <th>Grado Minimo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>PERMESSO MASCHERA</td><td><span class="price-badge">$60.000</span></td><td><span class="stipend-badge">$25.000</span></td><td>Durata 30 giorni</td><td><span class="discord-tag tag-procura">Procuratore in su</span></td></tr>
+                                    <tr><td>Cambio Nome e Cognome</td><td><span class="price-badge">$20.000</span></td><td>//</td><td><span class="discord-tag tag-procura">Procuratore in su</span></td></tr>
+                                    <tr><td>Permesso Maschera (2 settimane)</td><td><span class="price-badge">$75.000</span></td><td>2 settimane</td><td><span class="discord-tag tag-procura">Procuratore in su</span></td></tr>
+                                    <tr><td>Permesso Maschera (1 mese)</td><td><span class="price-badge">$150.000</span></td><td>1 mese</td><td><span class="discord-tag tag-procura">Procuratore in su</span></td></tr>
+                                    <tr><td>Permesso Maschera (2 mesi)</td><td><span class="price-badge">$275.000</span></td><td>2 mesi</td><td><span class="discord-tag tag-procura">Procuratore in su</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Table Procura - Pulizia Fedina -->
+                        <h3 style="color:var(--crimson-accent); font-family:var(--font-title); margin:2.2rem 0 0.8rem 0;">
+                            ⚖️ Tariffe <span class="discord-tag tag-procura">Pulizia Fedina Penale</span>
+                        </h3>
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Servizio</th>
+                                        <th>Costo Multe (%)</th>
+                                        <th>Metodo Calcolo</th>
+                                        <th>Esito Sanzioni</th>
+                                        <th>Grado Minimo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <tr><td>1ª Pulizia Fedina</td><td><span class="price-badge">25% delle multe</span></td><td>Calcolata su fattura</td><td>Cancellazione sanzioni</td><td><span class="discord-tag tag-procura">Procura</span></td></tr>
                                     <tr><td>2ª Pulizia Fedina</td><td><span class="price-badge">50% delle multe</span></td><td>Calcolata su fattura</td><td>Cancellazione sanzioni</td><td><span class="discord-tag tag-procura">Procura</span></td></tr>
                                     <tr><td>3ª Pulizia Fedina</td><td><span class="price-badge">75% delle multe</span></td><td>Calcolata su fattura</td><td>Cancellazione sanzioni</td><td><span class="discord-tag tag-procura">Procura</span></td></tr>
@@ -6149,5 +6176,5 @@ dell'autorità giudiziaria</td>
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1d387c8ca29ee51',t:'MTc4NDM5OTE0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
