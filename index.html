@@ -811,10 +811,129 @@
         /* 3 BIG CATEGORIES CARDS */
         .big-categories-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
             margin: 1.5rem 0;
         }
+
+        @media (max-width: 1280px) {
+            .big-categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .big-categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* I NOSTRI SERVIZI SHOWCASE STYLES */
+        .servizi-group-title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin: 2rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid var(--gold-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .services-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .service-card-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%);
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gold-primary);
+        }
+
+        .service-card-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 1.02rem;
+            color: var(--navy-primary);
+            margin: 0 0 0.3rem 0;
+            line-height: 1.3;
+        }
+
+        .service-badges-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-badge-price {
+            background: rgba(5, 150, 105, 0.1);
+            color: #059669;
+            border: 1px solid rgba(5, 150, 105, 0.3);
+            font-family: var(--font-code);
+            font-weight: 800;
+            font-size: 0.78rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .service-badge-duration {
+            background: rgba(0, 40, 85, 0.08);
+            color: var(--navy-primary);
+            border: 1px solid var(--border-navy);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: var(--text-body);
+            line-height: 1.5;
+            margin: 0;
+        }
+
 
         .big-cat-btn {
             background: linear-gradient(180deg, #ffffff 0%, #faf8f2 100%);
@@ -1299,7 +1418,15 @@
                     </div>
                 </div>
 
-                <!-- 2. CODICE PENALE V2 CON LE 4 SOTTO-CATEGORIE DEDICATE -->
+                <!-- 2. I NOSTRI SERVIZI (POSIZIONATO SOTTO A HOMEPAGE) -->
+                <div class="nav-btn" onclick="navigatePage('servizi')">
+                    <div class="nav-btn-content">
+                        <i class="fa-solid fa-handshake-angle" style="color:var(--gold-bright);"></i>
+                        <span style="font-weight:800; color:var(--navy-primary);">I Nostri Servizi</span>
+                    </div>
+                </div>
+
+                <!-- 3. CODICE PENALE V2 CON LE 4 SOTTO-CATEGORIE DEDICATE -->
                 <div class="nav-btn" onclick="toggleSubMenu('sub-codice-penale', 'codice-penale')">
                     <div class="nav-btn-content">
                         <i class="fa-solid fa-gavel" style="color:var(--gold-dark);"></i>
@@ -1322,7 +1449,7 @@
                     </div>
                 </div>
 
-                <!-- 3. CALCOLA REATI -->
+                <!-- 4. CALCOLA REATI -->
                 <div class="nav-btn" onclick="navigatePage('calcola-reati')">
                     <div class="nav-btn-content">
                         <i class="fa-solid fa-calculator" style="color:var(--crimson-accent);"></i>
@@ -1330,7 +1457,7 @@
                     </div>
                 </div>
 
-                <!-- 4. LISTINO PREZZI UFFICIALE -->
+                <!-- 5. LISTINO PREZZI UFFICIALE -->
                 <div class="nav-btn" onclick="navigatePage('listino')">
                     <div class="nav-btn-content">
                         <i class="fa-solid fa-file-invoice-dollar"></i>
@@ -1381,13 +1508,32 @@
                     <!-- ================= SECTION: HOMEPAGE ================= -->
                     <section id="view-home" class="view-section active">
                         <div class="hero-banner">
-                            <h2 class="hero-title">PORTALE GIURISPRUDENZA GOVERNATIVA</h2>
+                            <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(212,175,55,0.18); border:1px solid var(--gold-bright); padding:4px 14px; border-radius:20px; margin-bottom:0.8rem; backdrop-filter:blur(4px);">
+                                <i class="fa-solid fa-building-columns" style="color:var(--gold-bright); font-size:0.85rem;"></i>
+                                <span style="font-family:var(--font-title); font-size:0.78rem; font-weight:800; color:var(--gold-light); letter-spacing:1px; text-transform:uppercase;">DIPARTIMENTO DI GIUSTIZIA • RAZER RP</span>
+                            </div>
+                            <h2 class="hero-title" style="letter-spacing:1.5px;">PORTALE GOVERNO - RAZER RP</h2>
                             <p class="hero-subtitle">
-                                Piattaforma informatica direzionale dello Stato della California - Razer RP. Seleziona una delle categorie principali qui sotto per accedere alle funzionalità operative.
+                                Piattaforma informatica unificata e registro telematico dello Stato della California - Razer RP per la consultazione pubblica delle leggi, del listino servizi civici e degli strumenti per la giustizia.
                             </p>
+                            <!-- HERO STATS STRIP -->
+                            <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.2rem; justify-content:flex-start;">
+                                <div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(0,0,0,0.35); border:1px solid rgba(212,175,55,0.4); padding:6px 14px; border-radius:30px; font-size:0.82rem; color:#ffffff;">
+                                    <i class="fa-solid fa-file-shield" style="color:var(--gold-bright);"></i> <strong>21+</strong> Servizi Civici
+                                </div>
+                                <div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(0,0,0,0.35); border:1px solid rgba(212,175,55,0.4); padding:6px 14px; border-radius:30px; font-size:0.82rem; color:#ffffff;">
+                                    <i class="fa-solid fa-gavel" style="color:var(--gold-bright);"></i> <strong>140</strong> Articoli Penali
+                                </div>
+                                <div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(0,0,0,0.35); border:1px solid rgba(212,175,55,0.4); padding:6px 14px; border-radius:30px; font-size:0.82rem; color:#ffffff;">
+                                    <i class="fa-solid fa-handshake-angle" style="color:var(--gold-bright);"></i> <strong>100%</strong> Trasparenza
+                                </div>
+                                <div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(16,185,129,0.25); border:1px solid #10b981; padding:6px 14px; border-radius:30px; font-size:0.82rem; color:#ffffff;">
+                                    <span style="width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span> Registro Attivo
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- 3 GRANDI PULSANTI CATEGORIE PRINCIPALI SU HOMEPAGE -->
+                        <!-- 4 GRANDI PULSANTI CATEGORIE PRINCIPALI SU HOMEPAGE -->
                         <div class="big-categories-grid">
                             <!-- GRANDES BOTTONE 1: CODICE PENALE V2 -->
                             <div class="big-cat-btn" onclick="navigatePage('codice-penale'); selectSubTab('cp-reati-tutti', 'codice-penale');">
@@ -1430,6 +1576,21 @@
                                 </p>
                                 <div class="big-cat-badge">
                                     <span>APRI LISTINO</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                            </div>
+
+                            <!-- GRANDES BOTTONE 4: I NOSTRI SERVIZI -->
+                            <div class="big-cat-btn" onclick="navigatePage('servizi');">
+                                <div class="big-cat-icon" style="border-color:var(--gold-bright); background:rgba(212,175,55,0.15);">
+                                    <i class="fa-solid fa-handshake-angle" style="color:var(--gold-dark);"></i>
+                                </div>
+                                <h3 class="big-cat-title">I Nostri Servizi</h3>
+                                <p class="big-cat-desc">
+                                    Guida illustrata a tutti i documenti ufficiali per cittadini, consulenze legali, assistenze in cella e servizi dedicati alle imprese.
+                                </p>
+                                <div class="big-cat-badge" style="background:linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%); color:#000000;">
+                                    <span>SCOPRI SERVIZI</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </div>
                             </div>
@@ -5773,6 +5934,8 @@ dell'autorità giudiziaria</td>
                                     <tr><td>Carta d'Identità</td><td><span class="price-badge">$2.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                     <tr><td>Patente</td><td><span class="price-badge">$3.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                     <tr><td>Info Precedenti Penali</td><td><span class="price-badge">$3.000</span></td><td>//</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Consulenza Legale</td><td><span class="price-badge">da $0 a $50.000</span></td><td>Sessione singola</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
+                                    <tr><td>Assistenza in Cella</td><td><span class="price-badge">da $0 a $50.000</span></td><td>Durante la detenzione</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                     <tr><td>Doc. Lavorativo Tirocinante</td><td><span class="price-badge">$4.000</span></td><td>2 settimane</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                     <tr><td>Doc. Lavorativo Dipendente</td><td><span class="price-badge">$10.000</span></td><td>1 mese</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
                                     <tr><td>Doc. Lavorativo Direttore</td><td><span class="price-badge">$30.000</span></td><td>3 mesi</td><td><span class="discord-tag tag-assistente">Assistente Legale in su</span></td></tr>
@@ -5833,6 +5996,411 @@ dell'autorità giudiziaria</td>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </section>
+
+                <!-- ================= SECTION: I NOSTRI SERVIZI ================= -->
+                <section id="view-servizi" class="view-section">
+                    <div class="white-card">
+                        <div class="card-header-bar">
+                            <h2 class="card-header-title"><i class="fa-solid fa-handshake-angle"></i> Guida Completa ai Servizi Governativi e Documenti</h2>
+                        </div>
+                        <p style="font-size:0.92rem; color:var(--text-body); margin-bottom:1.8rem; line-height:1.6;">
+                            Il Dipartimento di Giustizia e l'Avvocatura dello Stato offrono una gamma completa di pratiche amministrative, autorizzazioni ufficiali e servizi legali per tutti i cittadini e le imprese commerciali. Consulta le schede informative sottostanti per dettagli, prezzi e durate.
+                        </p>
+
+                        <!-- GRUPPO 1: DOCUMENTI UFFICIALI PER I CITTADINI -->
+                        <div class="servizi-group-title">
+                            <i class="fa-solid fa-id-card" style="color:var(--gold-dark);"></i> 1. Documenti Ufficiali del Cittadino
+                        </div>
+                        <div class="services-cards-grid">
+                            
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-address-card"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Carta d'Identità</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$2.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Illimitata</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Documento primario di riconoscimento rilasciato dallo Stato della California per la certificazione certa dell'identità personale, la fruizione dei diritti civili e l'identificazione di fronte alle forze dell'ordine.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-id-badge"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Patente di Guida</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$3.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Illimitata</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Licenza abilitativa ufficiale indispensabile che autorizza la conduzione di veicoli a motore sul territorio statale previa verifica di idoneità stradale ed idoneità medica.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-file-shield"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Info Precedenti Penali</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$3.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Immediata</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Certificato informativo della Giustizia che attesta lo storico giudiziario del richiedente, le eventuali condanne passate o la piena assenza di carichi pendenti.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-gun"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Porto d'Armi</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$35.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Titolo abilitativo speciale di pubblica sicurezza che consente la compravendita, detenzione ed il trasporto legale di armi da fuoco e munizioni regolamentate.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-user-graduate"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Doc. Lavorativo Tirocinante</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$4.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 2 Settimane</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Certificazione provvisoria di inquadramento occupazionale per stagisti, tirocinanti e praticanti impiegati presso attività commerciali o enti accreditati.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Doc. Lavorativo Dipendente</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$10.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Attestato contrattuale ufficiale che certifica la regolare posizione lavorativa subordinata ed i diritti tutelati del dipendente aziendale.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-user-tie"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Doc. Lavorativo Direttore</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$30.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 3 Mesi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Inquadramento contrattuale di livello apicale riservato a titolari, manager, amministratori delegati e dirigenti responsabili di imprese o enti pubblici.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-store"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Documento Vendita Ambulante</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$15.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Licenza commerciale governativa necessaria per svolgere legittimamente il commercio di beni e merci in forma itinerante o presso stand su suolo pubblico.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-car"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Permesso Vetri Oscurati</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$30.000 / targa</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Autorizzazione amministrativa associata alla targa del veicolo che esenta da sanzioni stradali per l'applicazione di vetri e pellicole oscuranti omologate.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-people-roof"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Certificato di Parentela</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$15.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Certificato di stato civile che dimostra ed attesta ufficialmente i vincoli di consanguineità, adozione o affinità familiare dinanzi allo Stato.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-heart-circle-check"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Certificato di Matrimonio</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$15.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 1 Mese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Atto di stato civile che sancisce il matrimonio legale celebrato tra due cittadini, attestando la comunione dei diritti e doveri coniugali.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-file-contract"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Certificato Revoca Parentela / Matrimonio</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$15.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Permanente</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Atto giudiziario formale avente valore legale che sancisce il divorzio coniugale o la disconoscenza formale dei legami di parentela.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-broom"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Richiesta Pulizia Fedina Penale</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$20.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 2 Settimane</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Istanza formale istruita dall'Avvocatura per avviare la procedura penale di riabilitazione del cittadino e cancellazione dello storico giudiziario.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- GRUPPO 2: CONSULENZE E ASSISTENZE LEGALI -->
+                        <div class="servizi-group-title" style="color:var(--crimson-accent); border-color:var(--crimson-accent); margin-top:2.5rem;">
+                            <i class="fa-solid fa-scale-balanced" style="color:var(--crimson-accent);"></i> 2. Consulenze & Assistenza Legale
+                        </div>
+                        <div class="services-cards-grid">
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%); color:#000;"><i class="fa-solid fa-comments"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Consulenza Legale Personale</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">da $0 a $50.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Su Appuntamento</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Sessione di orientamento e supporto giuridico su misura fornita da Avvocati di Stato o Procuratori per la disamina di ricorsi, contratti o difese legali.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--crimson-accent) 0%, #7f1d1d 100%); color:#fff; border-color:var(--crimson-accent);"><i class="fa-solid fa-person-military-to-person"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Assistenza in Cella</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">da $0 a $50.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Intervento Immediato</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Intervento legale d'urgenza dell'Avvocatura presso i comandi o gli istituti di pena a presidio e tutela dei diritti costituzionali dell'arrestato durante il fermo.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-pen-to-square"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Cambio Nome e Cognome</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$20.000</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Istanza Procura</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Procedura di rettifica e variazione formale delle generalità dell'identità personale approvata dalla Procura Generale previa verifica di leggittimità.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-masks-theater"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Permesso Maschera</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">$75k - $275k</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> 2 Sett. - 2 Mesi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Deroga governativa speciale rilasciata dalla Procura che autorizza l'utilizzo di maschere o coperture facciali per motivate ragioni di lavoro o sicurezza.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box"><i class="fa-solid fa-file-signature"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Pulizia Fedina Penale Procura</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">25% - 100% Multe</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Decreto Procura</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Provvedimento di amnistia e cancellazione integrale dei precedenti penali approvato dal Magistrato a seguito del versamento delle sanzioni dovute.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- GRUPPO 3: SERVIZI SPECIALI PER LE AZIENDE E LE IMPRESE -->
+                        <div class="servizi-group-title" style="margin-top:2.5rem;">
+                            <i class="fa-solid fa-building" style="color:var(--gold-dark);"></i> 3. Categoria Imprese & Servizi per le Aziende
+                        </div>
+                        <div class="services-cards-grid">
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); color:var(--gold-bright);"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Redazione e Registrazione Partita IVA</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">Registrazione Statale</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Definitiva</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Attribuzione del codice fiscale aziendale univoco indispensabile per registrare una società e condurre affari o fatturazioni trasparenti nello Stato.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); color:var(--gold-bright);"><i class="fa-solid fa-coins"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Riscossione e Gestione Tasse Societarie</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">Fiscalità Imprese</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Periodicizzazione</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Servizio centrale di calcolo, saldo e rendicontazione dei tributi fiscali societari per garantire l'operatività d'impresa nel pieno rispetto delle norme tributarie.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); color:var(--gold-bright);"><i class="fa-solid fa-calendar-check"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Organizzazione e Condono Eventi Pubblici</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">Licenza Evento</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Per Manifestazione</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Rilascio di permessi per raduni, spettacoli, gare ed eventi privati con occupazione di suolo pubblico e coordinamento dei piani di sicurezza ufficiali.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); color:var(--gold-bright);"><i class="fa-solid fa-handshake"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Convenzioni e Partnership Aziendali</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">Accordo Governativo</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Pluriennale</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Stipula di contratti di collaborazione istituzionale tra il Governo e le imprese per appalti pubblici, forniture esclusive e trattamenti fiscali agevolati.</p>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div>
+                                    <div class="service-card-top">
+                                        <div class="service-icon-box" style="background:linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%); color:var(--gold-bright);"><i class="fa-solid fa-file-pen"></i></div>
+                                        <div>
+                                            <h4 class="service-card-title">Consulenza Societaria e Contrattualistica</h4>
+                                            <div class="service-badges-row">
+                                                <span class="service-badge-price">Assistenza B2B</span>
+                                                <span class="service-badge-duration"><i class="fa-solid fa-clock"></i> Su Misura</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="service-desc">Redazione e revisione di statuti d'azienda, contratti di lavoro per i dipendenti, patti di riservatezza e contrattualistica commerciale ad alto valore legale.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </section>
 
@@ -6176,5 +6744,5 @@ dell'autorità giudiziaria</td>
             });
         }
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1da1645e9a0ed48',t:'MTc4NDQ2Nzg5Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
