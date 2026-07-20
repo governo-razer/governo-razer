@@ -8719,26 +8719,84 @@
             // Toast notification disabled
         }
 
-        // Codice Penale Search Filter
-        function filterCodicePenale() {
-            var filterInput = document.getElementById('cpFilterInput');
-            if (!filterInput) return;
-            var filter = filterInput.value.toLowerCase().trim();
+                // Universal Filter Engine (Shows ONLY Matching Results, Hides Non-Matching Items)
+        function globalSearch() {
+            var searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            var query = searchInput.value.toLowerCase().trim();
 
-            var activeSub = document.querySelector('#view-codice-penale .sub-tab-content[style*="display: block"], #view-codice-penale .sub-tab-content:not([style*="display: none"])');
-            if (!activeSub) return;
+            // 1. Filter Codice Penale Rows
+            var cpRows = document.querySelectorAll('.cp-crime-row');
+            cpRows.forEach(function(row) {
+                if (!query) {
+                    row.style.display = '';
+                    row.style.border = '';
+                    row.style.boxShadow = '';
+                } else if (row.innerText.toLowerCase().indexOf(query) !== -1) {
+                    row.style.display = 'block';
+                    row.style.border = '2px solid var(--gold-primary)';
+                    row.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.4)';
+                } else {
+                    row.style.display = 'none';
+                    row.style.border = '';
+                    row.style.boxShadow = '';
+                }
+            });
 
-            var rows = activeSub.querySelectorAll('.cp-crime-row');
-            rows.forEach(function(tr) {
-                if (tr.innerText.toLowerCase().indexOf(filter) !== -1) {
+            // 2. Filter Penal Calculator Items
+            var calcItems = document.querySelectorAll('.calc-crime-item');
+            calcItems.forEach(function(item) {
+                var text = (item.innerText + " " + (item.getAttribute('data-search') || '')).toLowerCase();
+                if (!query) {
+                    item.style.display = 'flex';
+                    item.style.border = '';
+                } else if (text.indexOf(query) !== -1) {
+                    item.style.display = 'flex';
+                    item.style.border = '1px solid var(--gold-primary)';
+                } else {
+                    item.style.display = 'none';
+                    item.style.border = '';
+                }
+            });
+
+            // 3. Filter I Nostri Servizi Cards
+            var serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(function(card) {
+                if (!query) {
+                    card.style.display = 'flex';
+                    card.style.borderColor = '';
+                } else if (card.innerText.toLowerCase().indexOf(query) !== -1) {
+                    card.style.display = 'flex';
+                    card.style.borderColor = 'var(--gold-primary)';
+                } else {
+                    card.style.display = 'none';
+                    card.style.borderColor = '';
+                }
+            });
+
+            // 4. Filter Listino Prezzi Table Rows
+            var tableRows = document.querySelectorAll('.custom-table tbody tr');
+            tableRows.forEach(function(tr) {
+                if (!query) {
+                    tr.style.display = '';
+                } else if (tr.innerText.toLowerCase().indexOf(query) !== -1) {
                     tr.style.display = '';
                 } else {
                     tr.style.display = 'none';
                 }
             });
+
+            // If user is searching and on Homepage, auto-navigate to Codice Penale
+            if (query.length >= 2) {
+                var homeView = document.getElementById('view-home');
+                if (homeView && homeView.classList.contains('active')) {
+                    navigatePage('codice-penale');
+                    selectSubTab('cp-reati-tutti', 'codice-penale');
+                }
+            }
         }
 
-        // Calcola Reati Filter
+        // Section Specific Filter for Calcola Reati Input
         function filterCalcCrimes() {
             var searchInput = document.getElementById('crimeCalcSearch');
             if (!searchInput) return;
@@ -8746,131 +8804,14 @@
 
             var items = document.querySelectorAll('.calc-crime-item');
             items.forEach(function(item) {
-                var searchData = item.getAttribute('data-search') || '';
-                if (searchData.indexOf(query) !== -1) {
+                var searchData = (item.innerText + " " + (item.getAttribute('data-search') || '')).toLowerCase();
+                if (!query || searchData.indexOf(query) !== -1) {
                     item.style.display = 'flex';
                 } else {
                     item.style.display = 'none';
                 }
             });
         }
-
-        // ================= CALCOLA REATI LIVE CALCULATION LOGIC & VISUAL SELECTED OPTIONS =================
-        var selectedCrimesList = [];
-
-        function recalculateCrimes() {
-            var checkboxes = document.querySelectorAll('.crime-chk:checked');
-            selectedCrimesList = [];
-
-            var totalFineMin = 0;
-            var totalJailMonths = 0;
-            var tagsContainer = document.getElementById('selectedCrimesListTags');
-            var countBadge = document.getElementById('selectedCountBadge');
-            var btnClearAll = document.getElementById('btnClearAllCrimes');
-
-            var tagsHtml = "";
-
-            checkboxes.forEach(function(chk) {
-                var rawData = chk.getAttribute('data-art');
-                if (rawData) {
-                    var data = JSON.parse(rawData);
-                    data.chkId = chk.id;
-                    selectedCrimesList.push(data);
-
-                    // Parse fine numbers
-                    var fineStr = data.sanzione || '';
-                    var fineClean = fineStr.replace(/\./g, '').replace('$', '');
-                    var fineNums = fineClean.match(/\d+/g);
-
-                    if (fineNums && fineNums.length > 0) {
-                        totalFineMin += parseInt(fineNums[0]);
-                    }
-
-                    // Parse detention months
-                    var jailStr = data.detenzione || '';
-                    var jailNums = jailStr.match(/\d+/g);
-                    if (jailNums && jailNums.length > 0) {
-                        totalJailMonths += parseInt(jailNums[0]);
-                    }
-
-                    // Render interactive removal tag pill
-                    tagsHtml += '<div style="display:inline-flex; align-items:center; gap:0.45rem; background:rgba(255,255,255,0.14); border:1px solid var(--gold-primary); padding:5px 12px; border-radius:20px; font-size:0.82rem; color:#ffffff; box-shadow:var(--shadow-sm);">' +
-                        '<strong style="color:var(--gold-bright); font-family:var(--font-code);">' + data.art + '</strong> ' + data.reato + ' ' +
-                        '<i class="fa-solid fa-circle-xmark" style="color:#f87171; cursor:pointer; font-size:0.95rem; margin-left:3px;" onclick="uncheckCrime(&quot;' + chk.id + '&quot;)" title="Rimuovi questo reato"></i>' +
-                        '</div>';
-                }
-            });
-
-            if (selectedCrimesList.length === 0) {
-                tagsHtml = '<span style="font-size:0.82rem; color:#cbd5e1; font-style:italic;">Nessun reato selezionato. Spunta i reati nell&apos;elenco sottostante per aggiungerli.</span>';
-                if (btnClearAll) btnClearAll.style.display = 'none';
-            } else {
-                if (btnClearAll) btnClearAll.style.display = 'inline-flex';
-            }
-
-            if (tagsContainer) tagsContainer.innerHTML = tagsHtml;
-            if (countBadge) countBadge.innerText = selectedCrimesList.length;
-
-            // CAP DETENTION AT MAX 60 MONTHS
-            var rawJail = totalJailMonths;
-            var cappedJail = Math.min(totalJailMonths, 60);
-
-            var countEl = document.getElementById('summaryCrimeCount');
-            var fineEl = document.getElementById('summaryFineTotal');
-            var jailEl = document.getElementById('summaryJailTotal');
-            var warnBadge = document.getElementById('capWarningBadge');
-
-            if (countEl) countEl.innerText = selectedCrimesList.length + " Reati";
-            if (fineEl) fineEl.innerText = "$" + totalFineMin.toLocaleString();
-
-            if (jailEl) {
-                if (rawJail > 60) {
-                    jailEl.innerText = "60 Mesi (Capped da " + rawJail + "m)";
-                    if (warnBadge) warnBadge.style.display = 'block';
-                } else {
-                    jailEl.innerText = cappedJail + " Mesi";
-                    if (warnBadge) warnBadge.style.display = 'none';
-                }
-            }
-        }
-
-        function uncheckCrime(chkId) {
-            var chk = document.getElementById(chkId);
-            if (chk) {
-                chk.checked = false;
-                recalculateCrimes();
-            }
-        }
-
-        function clearAllCrimes() {
-            var checkboxes = document.querySelectorAll('.crime-chk:checked');
-            checkboxes.forEach(function(chk) {
-                chk.checked = false;
-            });
-            recalculateCrimes();
-            showToast("Tutti i reati deselezionati!");
-        }
-
-        // Global Universal Search Filter
-        function globalSearch() {
-            var searchInput = document.getElementById('searchInput');
-            if (!searchInput) return;
-            var query = searchInput.value.toLowerCase().trim();
-
-            var cards = document.querySelectorAll('.white-card, .big-cat-btn, .calc-crime-item, .cp-crime-row, .discord-card');
-            cards.forEach(function(card) {
-                if (!query) {
-                    card.style.border = '';
-                    card.style.boxShadow = '';
-                } else if (card.innerText.toLowerCase().indexOf(query) !== -1) {
-                    card.style.border = '2px solid var(--gold-primary)';
-                    card.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.4)';
-                } else {
-                    card.style.border = '';
-                    card.style.boxShadow = '';
-                }
-            });
-        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e2d5875c49d815',t:'MTc4NDU1OTYxMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e3d3007db8eea7',t:'MTc4NDU2OTk5NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
