@@ -641,6 +641,17 @@
             box-shadow: var(--shadow-md);
         }
 
+        .nav-btn.active span,
+        .nav-btn.active strong,
+        .nav-btn.active div {
+            color: #ffffff !important;
+        }
+
+        .nav-btn.active i {
+            color: var(--gold-bright) !important;
+        }
+
+
         .nav-btn.active i {
             color: var(--gold-bright);
         }
@@ -1667,6 +1678,7 @@
         <!-- ================= SIDEBAR NAVIGAZIONE A SINISTRA (Z-INDEX 9500) ================= -->
                 <!-- ================= SIDEBAR NAVIGAZIONE A SINISTRA ================= -->
                 <!-- ================= SIDEBAR NAVIGAZIONE A SINISTRA ================= -->
+                <!-- ================= SIDEBAR NAVIGAZIONE A SINISTRA ================= -->
         <aside class="app-sidebar" id="appSidebar">
             <!-- Sidebar Brand Header -->
             <div class="sidebar-brand">
@@ -1690,19 +1702,19 @@
                     </div>
                 </div>
 
-                <!-- 2. I NOSTRI SERVIZI (POSIZIONATO SOTTO A HOMEPAGE) -->
+                <!-- 2. I NOSTRI SERVIZI -->
                 <div class="nav-btn" onclick="navigatePage('servizi')">
                     <div class="nav-btn-content">
-                        <i class="fa-solid fa-handshake-angle" style="color:var(--gold-bright);"></i>
-                        <span style="font-weight:800; color:var(--navy-primary);">I Nostri Servizi</span>
+                        <i class="fa-solid fa-handshake-angle"></i>
+                        <span>I Nostri Servizi</span>
                     </div>
                 </div>
 
                 <!-- 3. CODICE PENALE V2 CON LE 5 SOTTO-CATEGORIE DEDICATE -->
                 <div class="nav-btn" onclick="toggleSubMenu('sub-codice-penale', 'codice-penale')">
                     <div class="nav-btn-content">
-                        <i class="fa-solid fa-gavel" style="color:var(--gold-dark);"></i>
-                        <span style="font-weight:800; color:var(--navy-primary);">Codice Penale V2</span>
+                        <i class="fa-solid fa-gavel"></i>
+                        <span>Codice Penale V2</span>
                     </div>
                     <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i>
                 </div>
@@ -1728,7 +1740,7 @@
                 <div class="nav-btn" onclick="navigatePage('calcola-reati')">
                     <div class="nav-btn-content">
                         <i class="fa-solid fa-calculator" style="color:var(--crimson-accent);"></i>
-                        <span style="font-weight:800; color:var(--crimson-accent);">Calcola Reati</span>
+                        <span style="color:var(--crimson-accent);">Calcola Reati</span>
                     </div>
                 </div>
 
@@ -1967,7 +1979,7 @@
                                 <i class="fa-solid fa-book"></i> 1 - Reati Codice Penale (137)
                             </button>
                             <button class="sub-pill-btn" onclick="selectSubTab('cp-note', 'codice-penale')">
-                                <i class="fa-solid fa-clipboard-check"></i> 2 - Note & Disposizioni (7)
+                                <i class="fa-solid fa-clipboard-check"></i> 2 - Note & Disposizioni (8)
                             </button>
                             <button class="sub-pill-btn" onclick="selectSubTab('cp-procedura', 'codice-penale')">
                                 <i class="fa-solid fa-scale-balanced"></i> 3 - Procedura Penale e Civile (18)
@@ -4688,6 +4700,14 @@
                                     <p style="font-size:0.88rem; color:var(--text-body);">Si precisa che la Contea di Los Santos non riconosce né approva i certificati rilasciati dall’EMS relativi all’uso personale di sostanze stupefacenti. Ai sensi dell’art. I.P.3.8, il possesso anche di un solo grammo di sostanza stupefacente costituisce reato ed è sanzionato secondo legge.</p>
                                 </div>
 
+                            
+
+                                <div style="background:#f8fafc; border:1px solid var(--border-gold); border-left:4px solid var(--navy-primary); padding:1.2rem; border-radius:var(--radius-md);">
+                                    <h4 style="color:var(--navy-primary); font-family:var(--font-title); font-size:1rem; margin-bottom:0.4rem;">
+                                        <i class="fa-solid fa-gun" style="color:var(--gold-dark);"></i> Uso e Trasporto Armi Pesanti (LSPD / SWAT)
+                                    </h4>
+                                    <p style="font-size:0.88rem; color:var(--text-body); line-height:1.5;">Gli unici individui ad usare e trasportare le armi pesanti ritenute "Illegali per i civili" nella guida armi sono i membri dell'LSPD dotati di PDA Lv.2 valido, ufficialmente rilasciato dal Governo o dalla Direzione dell'LSPD. Gli unici altri individui autorizzati sono gli agenti facenti parte del Dipartimento della SWAT. In entrambi i casi, il trasporto e l'utilizzo sono leciti esclusivamente <strong style="color:var(--navy-primary);">DURANTE IL SERVIZIO</strong>.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -8852,5 +8872,5 @@
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e1bff8bd253128',t:'MTc4NDU0ODI0Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e2d5875c49d815',t:'MTc4NDU1OTYxMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
